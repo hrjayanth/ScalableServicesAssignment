@@ -1,0 +1,16 @@
+version: '3'
+services:
+    discovery:
+        image: scalable/discovery-service
+        build: /spring-cloud/DiscoveryService
+        ports:
+            - "8761:8761"
+    user-service:
+        image: scalable/user-service
+        build: /microservices/UserService
+        environment:
+          EUREKA_SERVER: "http://discovery:8761/eureka"
+        ports:
+            - "8080:8080"
+        depends_on:
+            - discovery
