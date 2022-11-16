@@ -1,13 +1,19 @@
-package com.assignment.scalable.dto;
+package com.assignment.scalable.collection;
 
-import java.util.List;
+import com.assignment.scalable.db.annotations.Collection;
+import com.assignment.scalable.db.utils.MongoConstants;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CarDTO {
+@Collection(name = "car", database = MongoConstants.CUSTOMERDATABASE)
+public class Car {
+
+	@JsonProperty("_id")
+	private Object _id;
 	private String registrationNumber;
 	private String brand;
 	private String model;
 	private String color;
-	private List<CarServiceDTO> carServiceHistory;
+	private Integer ownerId;
 
 	public String getRegistrationNumber() {
 		return registrationNumber;
@@ -41,12 +47,21 @@ public class CarDTO {
 		this.color = color;
 	}
 
-	public List<CarServiceDTO> getCarServiceHistory() {
-		return carServiceHistory;
+	public Object get_id() {
+		return _id;
 	}
 
-	public void setCarServiceHistory(List<CarServiceDTO> carServiceHistory) {
-		this.carServiceHistory = carServiceHistory;
+	public void set_id(Object _id) {
+		this._id = _id;
 	}
+
+	public Integer getOwnerId() {
+		return ownerId;
+	}
+
+	public void setOwnerId(Integer ownerId) {
+		this.ownerId = ownerId;
+	}
+
 
 }

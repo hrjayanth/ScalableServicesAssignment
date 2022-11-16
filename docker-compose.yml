@@ -11,7 +11,7 @@ services:
         environment:
           EUREKA_SERVER: "http://discovery:8761/eureka"
         ports:
-            - "8080:8080"
+            - "8000:8000"
         depends_on:
             - discovery
     car-service:
@@ -20,6 +20,6 @@ services:
         environment:
           EUREKA_SERVER: "http://discovery:8761/eureka"
         ports:
-            - "8080:8082"
+            - "8001:8001"
         depends_on:
             - discovery     

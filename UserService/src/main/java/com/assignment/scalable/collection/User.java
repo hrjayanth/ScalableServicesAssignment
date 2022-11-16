@@ -1,14 +1,23 @@
-package com.assignment.scalable.dto;
+package com.assignment.scalable.collection;
 
-import java.util.List;
+import com.assignment.scalable.db.annotations.Collection;
+import com.assignment.scalable.db.utils.MongoConstants;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class UserDTO {
+@Collection(name = "user", database = MongoConstants.CUSTOMERDATABASE)
+public class User {
+
+	@JsonProperty("_id")
+	private Object _id;
+
 	private Integer userId;
+
 	private String name;
+
 	private String emailId;
+
 	private String phoneNo;
-	private List<CarDTO> carList;
-	
+
 	public Integer getUserId() {
 		return userId;
 	}
@@ -41,11 +50,12 @@ public class UserDTO {
 		this.phoneNo = phoneNo;
 	}
 
-	public List<CarDTO> getCarList() {
-		return carList;
+	public Object get_id() {
+		return _id;
 	}
 
-	public void setCarList(List<CarDTO> carList) {
-		this.carList = carList;
+	public void set_id(Object _id) {
+		this._id = _id;
 	}
+
 }

@@ -9,6 +9,6 @@ public interface UserService {
 
 	Boolean updateUserProfile(UserDTO dto) throws Exception;
 
-	Boolean addCar(CarDTO dto) throws Exception;
+	Boolean addCar(Integer userId, CarDTO dto) throws Exception;
 
 }
