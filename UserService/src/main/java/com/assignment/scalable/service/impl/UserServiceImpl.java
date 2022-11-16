@@ -1,5 +1,10 @@
 package com.assignment.scalable.service.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -61,5 +66,23 @@ public class UserServiceImpl implements UserService {
 
 		carDao.insert(car);
 		return true;
+	}
+
+	@Override
+	public List<UserDTO> getAllCustomers() throws Exception {
+		Map<String, Object> criteriaMap = new HashMap<>();
+		List<User> userList = userDao.find(criteriaMap);
+
+		List<UserDTO> userDtoList = new ArrayList<>();
+		for (User user : userList) {
+			UserDTO userDto = new UserDTO();
+			userDto.setEmailId(user.getEmailId());
+			userDto.setName(user.getName());
+			userDto.setPhoneNo(user.getPhoneNo());
+			userDto.setUserId(user.getUserId());
+			userDtoList.add(userDto);
+		}
+
+		return userDtoList;
 	}
 }

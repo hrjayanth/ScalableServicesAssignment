@@ -37,6 +37,13 @@ public class UserController {
 		return new ResponseEntity<Boolean>(userService.addCar(userId, dto), HttpStatus.OK);
 	}
 
+	@GetMapping(path = "/get-all-customers")
+	public ResponseEntity<List<UserDTO>> getAllCustomers() throws Exception {
+		return new ResponseEntity<List<UserDTO>>(userService.getAllCustomers(), HttpStatus.OK);
+	}
+
+	// Test APIs 
+
 	@GetMapping(path = "/test-add-car")
 	public ResponseEntity<Boolean> testAddCar() throws Exception {
 		CarDTO carDto = new CarDTO();
@@ -44,30 +51,30 @@ public class UserController {
 		carDto.setColor("Urban Brown Metallic");
 		carDto.setModel("Amaze");
 		carDto.setRegistrationNumber("KA07L0125");
-		
+
 		List<CarDTO> carDtoList = new ArrayList<>();
 		carDtoList.add(carDto);
 
 		return new ResponseEntity<>(userService.addCar(1, carDto), HttpStatus.OK);
 	}
-	
+
 	@GetMapping(path = "/test-create-user-profile")
 	public ResponseEntity<Integer> testCreateUserProfile() throws Exception {
 		UserDTO dto = new UserDTO();
 		dto.setName("ABCD");
 		dto.setEmailId("abcd@def.in");
 		dto.setPhoneNo("+91 90227 83210");
-		
+
 		CarDTO carDto = new CarDTO();
 		carDto.setBrand("Honda");
 		carDto.setColor("Urban Brown Metallic");
 		carDto.setModel("Amaze");
 		carDto.setRegistrationNumber("KA07L0137");
-		
+
 		List<CarDTO> carDtoList = new ArrayList<>();
 		carDtoList.add(carDto);
 		dto.setCarList(carDtoList);
-		
+
 		int userId = userService.createUserProfile(dto);
 		return new ResponseEntity<>(userId, HttpStatus.OK);
 	}
