@@ -43,6 +43,11 @@ public class UserController {
 		return new ResponseEntity<List<UserDTO>>(userService.getAllCustomers(), HttpStatus.OK);
 	}
 
+	@GetMapping(path = "/get-customer")
+	public ResponseEntity<UserDTO> getCustomer(@RequestParam Integer userId) throws Exception {
+		return new ResponseEntity<UserDTO>(userService.getCustomer(userId), HttpStatus.OK);
+	}
+	
 	// Test APIs 
 
 	@GetMapping(path = "/test-add-car")
@@ -56,7 +61,7 @@ public class UserController {
 		List<CarDTO> carDtoList = new ArrayList<>();
 		carDtoList.add(carDto);
 
-		return new ResponseEntity<>(userService.addCar(1, carDto), HttpStatus.OK);
+		return new ResponseEntity<String>(userService.addCar(1, carDto), HttpStatus.OK);
 	}
 
 	@GetMapping(path = "/test-create-user-profile")

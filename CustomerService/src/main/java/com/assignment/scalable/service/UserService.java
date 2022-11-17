@@ -15,4 +15,6 @@ public interface UserService {
 
 	List<UserDTO> getAllCustomers() throws Exception;
 
+	UserDTO getCustomer(Integer userId) throws Exception;
+
 }

@@ -8,6 +8,7 @@ public class CarServiceDTO {
 	private Double serviceCost;
 	private Date nextServiceDate;
 	private boolean freeService;
+	private String serviceStatus;
 
 	public Date getServiceDate() {
 		return serviceDate;
@@ -41,4 +42,13 @@ public class CarServiceDTO {
 		this.freeService = freeService;
 	}
 
+	public String getServiceStatus() {
+		return serviceStatus;
+	}
+
+	public void setServiceStatus(String serviceStatus) {
+		this.serviceStatus = serviceStatus;
+	}
+
+	
 }

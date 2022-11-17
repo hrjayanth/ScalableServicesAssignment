@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class MongoUtil {
 
-	private static Integer UNIQUESEQUENCE = 1;
+	private static Integer UNIQUESEQUENCE = 3;
 	
 	public static synchronized Map<String, Object> convertToMap(Object obj) {
 		ObjectMapper oMapper = new ObjectMapper();

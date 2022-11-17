@@ -110,4 +110,36 @@ public class UserServiceImpl implements UserService {
 
 		return userDtoList;
 	}
+
+	@Override
+	public UserDTO getCustomer(Integer userId) throws Exception {
+		Map<String, Object> criteriaMap = new HashMap<>();
+		criteriaMap.put("userId", userId);
+
+		User user = userDao.findOne(criteriaMap);
+
+		UserDTO userDto = new UserDTO();
+		userDto.setUserId(user.getUserId());
+		userDto.setEmailId(user.getEmailId());
+		userDto.setName(user.getName());
+		userDto.setPhoneNo(user.getPhoneNo());
+
+		criteriaMap = new HashMap<>();
+		criteriaMap.put("ownerId", userId);
+		List<Car> carList = carDao.find(criteriaMap);
+
+		List<CarDTO> carDtoList = new ArrayList<>();
+		for (Car car : carList) {
+			CarDTO carDto = new CarDTO();
+			carDto.setBrand(car.getBrand());
+			carDto.setColor(car.getColor());
+			carDto.setModel(car.getModel());
+			carDto.setRegistrationNumber(car.getRegistrationNumber());
+
+			carDtoList.add(carDto);
+		}
+		userDto.setCarList(carDtoList);
+
+		return userDto;
+	}
 }
