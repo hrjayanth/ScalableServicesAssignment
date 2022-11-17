@@ -6,9 +6,9 @@
 		<artifactId>CarShowroom</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>CarService</artifactId>
-	<name>CarService</name>
-	<description>Car Service for Scalable Assignment</description>
+	<artifactId>CarMaintenanceService</artifactId>
+	<name>CarMaintenanceService</name>
+	<description>Car Maintenance Service for Scalable Assignment</description>
 	<properties>
 		<java.version>11</java.version>
 		<spring-cloud.version>2021.0.4</spring-cloud.version>

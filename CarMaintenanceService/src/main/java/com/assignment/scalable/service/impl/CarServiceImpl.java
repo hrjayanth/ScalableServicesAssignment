@@ -33,7 +33,7 @@ public class CarServiceImpl implements CarService {
 		carServiceSchedule.setCarRegistrationId(carId);
 		carServiceSchedule.setServiceDate(serviceDate);
 
-		InstanceInfo service = eurekaClient.getApplication("USER SERVICE").getInstances().get(0);
+		InstanceInfo service = eurekaClient.getApplication("CUSTOMER SERVICE").getInstances().get(0);
 
 		String hostName = service.getHostName();
 		int port = service.getPort();

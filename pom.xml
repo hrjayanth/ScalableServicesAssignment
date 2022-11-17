@@ -15,8 +15,8 @@
 	<description>Microservice for Scalable Assignment</description>
 	<packaging>pom</packaging>
 	<modules>
-		<module>CarService</module>
-		<module>UserService</module>
+		<module>CarMaintenanceService</module>
+		<module>CustomerService</module>
 		<module>Utilities</module>
 		<module>DiscoveryService</module>
 	</modules>

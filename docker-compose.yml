@@ -5,18 +5,18 @@ services:
         build: /DiscoveryService
         ports:
             - "8761:8761"
-    user-service:
-        image: scalable/user-service
-        build: /UserService
+    customer-service:
+        image: scalable/customer-service
+        build: /CustomerService
         environment:
           EUREKA_SERVER: "http://discovery:8761/eureka"
         ports:
             - "8000:8000"
         depends_on:
             - discovery
-    car-service:
-        image: scalable/car-service
-        build: /CarService
+    car-maintenance-service:
+        image: scalable/car-maintenance-service
+        build: /CarMaintenanceService
         environment:
           EUREKA_SERVER: "http://discovery:8761/eureka"
         ports:

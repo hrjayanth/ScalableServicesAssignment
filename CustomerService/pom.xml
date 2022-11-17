@@ -7,8 +7,8 @@
 		<artifactId>CarShowroom</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>UserService</artifactId>
-	<name>UserService</name>
+	<artifactId>CustomerService</artifactId>
+	<name>CustomerService</name>
 	<description>User Service for Scalable Assignment</description>
 	<properties>
 		<java.version>11</java.version>
