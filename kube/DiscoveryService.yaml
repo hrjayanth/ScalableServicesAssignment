@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: DiscoveryService
+spec:
+  selector:
+    app: DiscoveryService
+  ports:
+    - port: 35360
+      targetPort: 2310
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: DiscoveryService
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: DiscoveryService
+  template:
+    metadata:
+      labels:
+        app: DiscoveryService
+    spec:
+      containers:
+        - name: DiscoveryService
+          image: scalable/DiscoveryService:v1
+          ports:
+            - containerPort: 2310
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "128Mi"
+            requests:
+              cpu: "0.5"
+              memory: "64Mi"
