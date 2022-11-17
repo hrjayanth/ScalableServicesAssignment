@@ -225,4 +225,18 @@ public abstract class GenericMongoDaoImpl<T> implements GenericMongoDao<T> {
 		Document doc = new Document(MongoConstants.ID, id);
 		return mongoCollection.countDocuments(doc) > 0;
 	}
+
+	/**
+	 * Inserts one document into the database
+	 * 
+	 * @param t
+	 * @return
+	 */
+	@Override
+	public void update(Map<String, Object> filter, T t) {
+		Map<String, Object> map = MongoUtil.convertToMap(t);
+		Document entityDocument = new Document(map);
+		this.mongoCollection.updateOne(new Document(filter), entityDocument);
+		ObjectId insertId = (ObjectId) entityDocument.get(MongoConstants.ID);
+	}
 }

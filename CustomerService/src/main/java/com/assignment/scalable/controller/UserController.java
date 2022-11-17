@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.assignment.scalable.dto.CarDTO;
 import com.assignment.scalable.dto.UserDTO;
@@ -21,20 +23,19 @@ public class UserController {
 	UserService userService;
 
 	@PostMapping(path = "/create-user-profile")
-	public ResponseEntity<Integer> createUserProfile(UserDTO dto) throws Exception {
+	public ResponseEntity<Integer> createUserProfile(@RequestBody UserDTO dto) throws Exception {
 		int userId = userService.createUserProfile(dto);
 		return new ResponseEntity<>(userId, HttpStatus.OK);
 	}
 
 	@PostMapping(path = "/update-user-profile")
-	public ResponseEntity<Boolean> updateUserProfile(UserDTO dto) throws Exception {
-		userService.updateUserProfile(dto);
-		return new ResponseEntity<>(true, HttpStatus.OK);
+	public ResponseEntity<String> updateUserProfile(@RequestBody UserDTO dto) throws Exception {
+		return new ResponseEntity<>(userService.updateUserProfile(dto), HttpStatus.OK);
 	}
 
 	@PostMapping(path = "/add-car")
-	public ResponseEntity<Boolean> addCar(Integer userId, CarDTO dto) throws Exception {
-		return new ResponseEntity<Boolean>(userService.addCar(userId, dto), HttpStatus.OK);
+	public ResponseEntity<String> addCar(@RequestParam Integer userId, @RequestBody CarDTO dto) throws Exception {
+		return new ResponseEntity<String>(userService.addCar(userId, dto), HttpStatus.OK);
 	}
 
 	@GetMapping(path = "/get-all-customers")
@@ -45,7 +46,7 @@ public class UserController {
 	// Test APIs 
 
 	@GetMapping(path = "/test-add-car")
-	public ResponseEntity<Boolean> testAddCar() throws Exception {
+	public ResponseEntity<String> testAddCar() throws Exception {
 		CarDTO carDto = new CarDTO();
 		carDto.setBrand("Honda");
 		carDto.setColor("Urban Brown Metallic");

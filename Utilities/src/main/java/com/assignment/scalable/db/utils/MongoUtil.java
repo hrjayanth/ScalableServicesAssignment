@@ -27,7 +27,7 @@ public class MongoUtil {
 	}
 
 	public static int getUniqueId() {
-		return UNIQUESEQUENCE + 1;
+		return UNIQUESEQUENCE++;
 	}
 
 }

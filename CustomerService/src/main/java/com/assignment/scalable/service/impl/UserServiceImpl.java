@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
 		User user = new User();
 		user.setEmailId(dto.getEmailId());
 		user.setName(dto.getName());
-		user.setPhoneNo(dto.getName());
+		user.setPhoneNo(dto.getPhoneNo());
 		int userId = MongoUtil.getUniqueId();
 		user.setUserId(userId);
 
@@ -50,13 +50,21 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Boolean updateUserProfile(UserDTO dto) throws Exception {
+	public String updateUserProfile(UserDTO dto) throws Exception {
+		Map<String, Object> criteriaMap = new HashMap<>();
+		criteriaMap.put("userId", dto.getUserId());
 
-		return true;
+		User user = userDao.findOne(criteriaMap);
+		user.setEmailId(dto.getEmailId());
+		user.setName(dto.getName());
+		user.setPhoneNo(dto.getPhoneNo());
+
+		userDao.update(criteriaMap, user);
+		return "SUCCESS";
 	}
 
 	@Override
-	public Boolean addCar(Integer ownerId, CarDTO dto) throws Exception {
+	public String addCar(Integer ownerId, CarDTO dto) throws Exception {
 		Car car = new Car();
 		car.setBrand(dto.getBrand());
 		car.setColor(dto.getColor());
@@ -65,7 +73,7 @@ public class UserServiceImpl implements UserService {
 		car.setOwnerId(ownerId);
 
 		carDao.insert(car);
-		return true;
+		return "SUCCESS";
 	}
 
 	@Override
@@ -80,6 +88,23 @@ public class UserServiceImpl implements UserService {
 			userDto.setName(user.getName());
 			userDto.setPhoneNo(user.getPhoneNo());
 			userDto.setUserId(user.getUserId());
+
+			criteriaMap = new HashMap<>();
+			criteriaMap.put("ownerId", user.getUserId());
+			List<Car> carList = carDao.find(criteriaMap);
+
+			List<CarDTO> carDtoList = new ArrayList<>();
+			for (Car car : carList) {
+				CarDTO carDto = new CarDTO();
+				carDto.setBrand(car.getBrand());
+				carDto.setColor(car.getColor());
+				carDto.setModel(car.getModel());
+				carDto.setRegistrationNumber(car.getRegistrationNumber());
+
+				carDtoList.add(carDto);
+			}
+
+			userDto.setCarList(carDtoList);
 			userDtoList.add(userDto);
 		}
 

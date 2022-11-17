@@ -9,9 +9,9 @@ public interface UserService {
 
 	Integer createUserProfile(UserDTO dto) throws Exception;
 
-	Boolean updateUserProfile(UserDTO dto) throws Exception;
+	String updateUserProfile(UserDTO dto) throws Exception;
 
-	Boolean addCar(Integer userId, CarDTO dto) throws Exception;
+	String addCar(Integer userId, CarDTO dto) throws Exception;
 
 	List<UserDTO> getAllCustomers() throws Exception;
 

@@ -4,7 +4,7 @@ import com.assignment.scalable.db.annotations.Collection;
 import com.assignment.scalable.db.utils.MongoConstants;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@Collection(name = "user", database = MongoConstants.CUSTOMERDATABASE)
+@Collection(name = "customer", database = MongoConstants.CUSTOMERDATABASE)
 public class User {
 
 	@JsonProperty("_id")

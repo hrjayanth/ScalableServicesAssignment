@@ -79,4 +79,12 @@ public interface GenericMongoDao<T> {
 	 * @return true if the record is successfully deleted
 	 */
 	public boolean delete(ObjectId id);
+	
+	/**
+	 * Updates the record which matches the given criteria
+	 * 
+	 * @param filter
+	 * @param t
+	 */
+	public void update(Map<String, Object> filter, T t);
 }
